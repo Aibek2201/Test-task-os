@@ -2,6 +2,10 @@ import os
 
 
 def categorize_files_by_type(folder_path):
+    if not os.path.exists(folder_path):
+        raise ValueError("Folder does not exist")
+    if not os.path.isdir(folder_path):
+        raise ValueError("Not a directory")
 
     res = {}
 
