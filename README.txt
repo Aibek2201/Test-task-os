@@ -1,3 +1,37 @@
+## Test task os.walk or recursion
+
+1. Clone this repo,
+
+```
+git clone https://github.com/Aibek2201/Test-task-os.git
+```
+
+Install virtual env:
+
+```
+python -m venv venv
+```
+
+Activate venv
+
+```
+.\venv\Scripts\activate
+```
+
+And start the project
+
+```
+python main.py
+```
+
+For checking tests
+
+```
+pytest
+```
+
+
+
 Objective:
 Create a Python function that takes a path to a folder and returns a dictionary where the keys are file types (extensions) and the values are lists of files with their full paths.
 
