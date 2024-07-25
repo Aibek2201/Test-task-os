@@ -19,7 +19,7 @@ def categorize_files_by_type(folder_path):
                         res[ext] = []
                     res[ext].append(entry.path)
                 elif entry.is_dir():
-                    scan_dir(entry.path)
+                    scan_dir(entry.path)  # Recursion
 
     scan_dir(folder_path)
     return res
