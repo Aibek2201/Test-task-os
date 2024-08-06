@@ -1,4 +1,6 @@
 import os
+from openpyxl import Workbook
+
 
 
 def categorize_files_by_type(folder_path):
@@ -14,10 +16,14 @@ def categorize_files_by_type(folder_path):
             with os.scandir(dir_name) as it:
                 for entry in it:
                     if entry.is_file():
-                        ext = os.path.splitext(entry.name)[1]
-                        if ext not in res:
-                            res[ext] = []
-                        res[ext].append(entry.path)
+                        if os.path.getsize(entry.path) > 1024:
+                            ext = os.path.splitext(entry.name)[1]
+                            if ext not in res:
+                                res[ext] = []
+                            res[ext].append(entry.path)
+                        else:
+                            pass
+
                     elif entry.is_dir():
                         scan_dir(entry.path)  # Recursion
         except PermissionError:
@@ -27,5 +33,20 @@ def categorize_files_by_type(folder_path):
     return res
 
 
-result = categorize_files_by_type(r"C:\Users")
+result = categorize_files_by_type(r"C:\Users\77475\Desktop\job\python\TestTask_os.walk\paths")
 print(result)
+
+wb = Workbook()
+ws = wb.active
+
+headers = ['Extension', 'path']
+ws.append(headers)
+
+for k, v in result.items():
+
+    for v1 in v:
+        print(v1)
+        ws.append([k] + [v1])
+
+
+wb.save('employees.xlsx')
